@@ -1,0 +1,31 @@
+{
+  "extends": "@tsconfig/react-native/tsconfig.json",
+  "compilerOptions": {
+    "jsx": "react-native",
+    "lib": ["dom", "esnext"],
+    "moduleResolution": "node",
+    "noEmit": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "strict": true,
+    "baseUrl": ".",
+    "esModuleInterop": false,
+    "allowSyntheticDefaultImports": true,
+    "paths": {
+      "@navigation/*": ["./src/navigation/*"],
+      "@components/*": ["./src/components/*"],
+      "@containers/*": ["./src/containers/*"],
+      "@assets/*": ["./src/assets/*"],
+      "@config/*": ["./src/config"],
+      "@store/*": ["./src/store"],
+      "@axios/*": ["./src/axios"],
+      "@translations/*": ["./src/translations"],
+      "@navRef/*": ["./src/navigationRef/*"],
+    }
+  },
+  "exclude": ["node_modules", "dist","babel.config.js",
+  "metro.config.js"],
+  // "include": ["src/custom.d.ts"],
+
+
+}
