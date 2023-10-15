@@ -125,11 +125,7 @@ export const downloadMedia = (filePath: string) => {
   });
 
   RNFetchBlob.config(configOptions)
-    .fetch(
-      'GET',
-      `https://connect-coach-bucket-dev.s3.amazonaws.com/${filePath}`,
-      {'Cache-Control': 'no-store'},
-    )
+    .fetch('GET', `${filePath}`, {'Cache-Control': 'no-store'})
     .then(res => {
       if (Platform.OS === 'android') {
         RNFetchBlob.android.actionViewIntent(res.path(), mimeType);
