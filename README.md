@@ -1,4 +1,4 @@
-# React Native Template
+# React Native Type Script Template
 
 [![Moove It](https://circleci.com/gh/moove-it/react-native-template.svg?style=svg)](https://app.circleci.com/pipelines/github/moove-it/react-native-template?branch=master)
 
@@ -20,6 +20,7 @@ Welcome to the README for our React Native project, built using the React Native
 - [redux](https://redux.js.org/) for state management.
 - [redux-persist](https://github.com/rt2zz/redux-persist) as persistance layer.
 - [redux-thunk](https://github.com/gaearon/redux-thunk) to dispatch asynchronous actions.
+- [rtk-query](https://github.com/reduxjs/redux-toolkit) for handling REST APIS.
 
 ## Usage
 
@@ -116,42 +117,48 @@ Another important thing is the use of propTypes to check the kind of data that y
 
 To keep an application scalable and organized, the global static resources that are used in the application have to be created in a specific file.
 
-### We manage three main folders for that:
+### We manage three main files for that inside common folder:
 
-- Assets: Here you can store all the images and icons that you need through the app. You have as an example the icon ic_home.png, to respond with the different device screen densities just create inside the same folder the image and all the scaled versions that you need. RN only handles x1, x2 and x3 in this case, you have.
+- Image: In this file, i am keeping image declarations organized within a dedicated file, ensuring a systematic and efficient approach to handling images throughout the entire user experience.
 
-  - assets
-    - ic_home
-      - ic_home.png
-      - ic_home@2x.png
-      - ic_home@3x.png
+- Colors: In this file, i am keeping a consistent and visually appealing user interface by using a well-defined set of colors that remain uniform throughout the application. All the colors are declared here.
 
-- Localization: This folder contains all the locale objects that you need to create a multilingual application. Create a file for each locale, inside define an object then maintain the nesting sorted by the screen that contains the text that you need and the text you want to show. As the last step, remember to create a reference inside the Localization.js file and add it to LocalizedStrings.
-- Theme: Here you can define all the styles that you use on different screens. To make easier the interaction of the application with device options for example you can create here assets as light and dark color palette
+- Unit: In this file, i am embracing responsive unit sizes, allowing our application to adapt and provide a consistent user experience across various device screen sizes and orientations
+
+- Style: In this file, all the global and reuseable styles are written to ensure lesser code and more code resuability and more styling to be completed in lesser time.
+
+
 
 ## Redux
 
-Once the components are defined, they are tied to the management of information through the application. For this, Redux is implemented with the store-reducer-action structure as usual, however, not only the data is handled through the actions but the success and error responses are also defined by the same form.
+Once the components are defined, they are tied to the management of information through the application. For this, Redux toolkit is implemented with the action-store structure as usual, however, not only the data is handled through the actions but the success and error responses are also defined by the same form.
+Moreover Redux Tool Kit Query (RTK Query) is implemented for REST API calling. RTK Query is a powerful and efficient data fetching and state management library for Redux.
 
-### Controllers folder and API connection handler
 
-To keep the networking layer simple, the template uses a single Axios instance in the `httpClient.js`. It uses interceptors to define common side effects for the responses.
+### Services folder and RTK Query handling
 
-When you need communication with a service you have to create a function to manage the operation and grouping according to the kind of transaction inside a controller file, please keep all of those inside the controllers' folder.
 
-While the data transfer between the API and the app is working you must use the success and error actions that help you to catch the result of the operation. With this method, you can track the interaction through the redux store. This is useful because you can create behaviors based on those states in a quick and simple way
+To keep the networking layer simple, the template uses RTK Query. 
 
-### Redux folders
+What is RTK Query? 
+Here's a short description
 
-4 folders divide the redux work
+# RTK Query Introduction
+Redux Toolkit Query (RTK Query) is a library designed to simplify data fetching and state management in Redux-based applications. It allows you to define and manage API endpoints, query data from them, and mutate data with minimal boilerplate code. RTK Query eliminates the need for writing and maintaining complex data fetching logic, making your project more efficient and maintainable.
 
-- Store: Here you define the store shape and you can configure the persistReducer and middlewares.
-- Actions: Remember to create the file and the corresponding test for each action classification. Here you define actions for success and error scenarios.
-- Reducers: You have the error and success reducers by default. Create the other classifications and try to keep simple each file. Here you modify the store.
-- Selectors: Create one file for each action classification. Here you define what part of the store you need to see in your interface.
+### Key Features
+- Automatic API Slices: RTK Query generates API slice reducers, actions, and selectors from your API endpoints, reducing boilerplate code.
+- Data Normalization: Data fetched by RTK Query is automatically normalized, enabling efficient updates and avoiding duplication.
+- Caching: RTK Query features intelligent caching, allowing you to control cache behavior and reduce unnecessary network requests.
+- Authentication and Interceptors: Easily integrate authentication and interceptors for custom logic.
+- Optimistic Updates: Implement optimistic updates for a smoother user experience.
 
-## Screens
+
+When you need communication with a screen you have to create a query/mutation function in /store/services/ file according to principles mentioned In Redux Tool kit query doucmention.
+For more instruction you can follow (https://redux-toolkit.js.org/rtk-query/overview)
+
+
+## Container
 
 In this folder, you have the main objects to apply the composition architecture. Just create a folder for each screen you have in your application, call all the components and static resources you need to render the scene and finally use the corresponding hooks to interact with redux and create behaviors depending on the store.
 
-To keep the structure, extract the styles from the main file and place it in a {namefile.styles.js} do the same for the set of tests needed for each screen with the file {namefile.test.js}
