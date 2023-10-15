@@ -19,7 +19,7 @@ const AppStack = ({navigation}) => {
   const Stack = createNativeStackNavigator();
   const Tab = createBottomTabNavigator();
 
-  const animationConfig = {
+  const animationConfig: any = {
     gestureDirection: 'horizontal',
     animation: 'slide_from_right',
     animationDuration: 200,
@@ -75,7 +75,7 @@ const AppStack = ({navigation}) => {
     );
   };
 
-  const CommunityStackNavigator = props => {
+  const CommunityStackNavigator = (props: any) => {
     return (
       <Stack.Navigator
         screenOptions={{
@@ -87,7 +87,7 @@ const AppStack = ({navigation}) => {
     );
   };
 
-  const ChatStackNavigator = props => {
+  const ChatStackNavigator = (props: any) => {
     return (
       <Stack.Navigator
         screenOptions={{

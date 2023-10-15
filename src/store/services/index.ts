@@ -9,7 +9,7 @@ export const serviceApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: baseURL,
     prepareHeaders: async (headers, {getState}) => {
-      const state = getState();
+      const state: any = getState();
       if (state?.user?.userToken) {
         headers.set('token', `${state?.user?.userToken}`);
       }
@@ -93,10 +93,10 @@ export const serviceApi = createApi({
       }),
     }),
 
-    refreshUserToken: builder.mutation({
-      query: () => ({}),
-      invalidatesTags: ['User', 'Employees'],
-    }),
+    // refreshUserToken: builder.mutation({
+    //   query: () => ({}),
+    //   invalidatesTags: ['User'],
+    // }),
 
     //---------------------- CHAT END POINTS ------------------------//
     getChatsList: builder.query({
@@ -153,5 +153,5 @@ export const {
   useGetChatsListQuery,
   useChatSeenMutation,
 
-  useAddCheckInMutation,
+  // useAddCheckInMutation,
 } = serviceApi;
